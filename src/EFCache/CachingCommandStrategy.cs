@@ -80,10 +80,10 @@ namespace EFCache
 
         public virtual bool GetCachedDbDataReader(string key, out DbDataReader dbDataReader)
         {
-            object value;
+            CachedResults value;
             if (_cacheTransactionHandler.GetItem(_commandMetadata.Transaction, key, _commandMetadata.Connection, out value))
             {
-                dbDataReader = CreateDataReaderFromCachedResults((CachedResults)value);
+                dbDataReader = CreateDataReaderFromCachedResults(value);
                 return true;
             }
             dbDataReader = null;
